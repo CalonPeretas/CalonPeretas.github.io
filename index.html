@@ -214,10 +214,46 @@
             color: white;
             margin: 0 auto;
             transition: transform 0.3s ease;
+            position: relative;
+            overflow: hidden;
         }
 
         .about-image:hover {
             transform: scale(1.05);
+        }
+
+        .profile-photo {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 50%;
+        }
+
+        .photo-upload {
+            position: absolute;
+            bottom: 10px;
+            right: 10px;
+            background: rgba(255, 255, 255, 0.9);
+            color: #333;
+            border: none;
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            cursor: pointer;
+            font-size: 1.2rem;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .photo-upload:hover {
+            background: white;
+            transform: scale(1.1);
+        }
+
+        #photo-input {
+            display: none;
         }
 
         .about-text {
@@ -505,9 +541,10 @@
         <h2 class="section-title fade-in">Tentang Saya</h2>
         <div class="about-content fade-in">
             <div class="about-image">
-                <!-- Tempat Foto -->
-                <!-- Emoji backup jika foto tidak dimuat -->
-                <span id="emoji-backup" style="display: none;">👨‍💻</span>
+                <img id="profile-photo" class="profile-photo" style="display: none;" alt="Profile Photo">
+                <span id="emoji-backup">👨‍💻</span>
+                <button class="photo-upload" onclick="document.getElementById('photo-input').click()">📷</button>
+                <input type="file" id="photo-input" accept="image/*">
             </div>
             <div class="about-text">
                 <p>Halo! Saya adalah seorang web developer dengan pengalaman kurang lebih 2 tahun dalam mengembangkan aplikasi web modern. Saya memiliki passion yang besar dalam teknologi dan selalu antusias untuk mempelajari hal-hal baru.</p>
@@ -685,6 +722,23 @@
 
         document.querySelectorAll('.fade-in').forEach(el => {
             observer.observe(el);
+        });
+
+        // Photo upload functionality
+        document.getElementById('photo-input').addEventListener('change', function(e) {
+            const file = e.target.files[0];
+            if (file) {
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                    const profilePhoto = document.getElementById('profile-photo');
+                    const emojiBackup = document.getElementById('emoji-backup');
+                    
+                    profilePhoto.src = e.target.result;
+                    profilePhoto.style.display = 'block';
+                    emojiBackup.style.display = 'none';
+                };
+                reader.readAsDataURL(file);
+            }
         });
 
         // Form submission
