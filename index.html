@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Portofolio Alan Rama Zufri</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         * {
             margin: 0;
@@ -674,30 +675,30 @@
 
     <!-- Contact Section -->
     <section id="contact" class="contact">
-        <h2 class="section-title fade-in">Hubungi Saya</h2>
-        <div class="contact-content fade-in">
-            <p>Tertarik untuk berkolaborasi? Mari kita diskusikan proyek Anda!</p>
-            <form class="contact-form">
-                <div class="form-group">
-                    <label for="name">Nama</label>
-                    <input type="text" id="name" name="name" required>
-                </div>
-                <div class="form-group">
-                    <label for="email">Email</label>
-                    <input type="email" id="email" name="email" required>
-                </div>
-                <div class="form-group">
-                    <label for="subject">Subjek</label>
-                    <input type="text" id="subject" name="subject" required>
-                </div>
-                <div class="form-group">
-                    <label for="message">Pesan</label>
-                    <textarea id="message" name="message" rows="5" required></textarea>
-                </div>
-                <button type="submit" class="submit-button">Kirim Pesan</button>
-            </form>
+    <h2 class="section-title fade-in">Hubungi Saya</h2>
+    <div class="contact-content fade-in">
+      <p>Tertarik untuk berkolaborasi? Mari kita diskusikan proyek Anda!</p>
+      <form class="contact-form" id="contact-form">
+        <div class="form-group">
+          <label for="name">Nama</label>
+          <input type="text" id="name" name="from_name" required />
         </div>
-    </section>
+        <div class="form-group">
+          <label for="email">Email</label>
+          <input type="email" id="email" name="from_email" required />
+        </div>
+        <div class="form-group">
+          <label for="subject">Subjek</label>
+          <input type="text" id="subject" name="subject" required />
+        </div>
+        <div class="form-group">
+          <label for="message">Pesan</label>
+          <textarea id="message" name="message" rows="5" required></textarea>
+        </div>
+        <button type="submit" class="submit-button">Kirim Pesan</button>
+      </form>
+    </div>
+  </section>
 
     <!-- Footer -->
     <!-- Tambahkan ini di <head> untuk Font Awesome (jika belum ada) -->
@@ -705,20 +706,16 @@
 <!-- Footer -->
 <footer class="fade-in">
     <div class="social-links">
-        <a href="https://www.instagram.com/bungreyes_?igsh=MWR3YWdmZWZtaXc0dw" class="social-link instagram" target="_blank" aria-label="Instagram">
-            <i class="fab fa-instagram"></i>
-        </a>
-        <a href="https://wa.me/6282176772714" class="social-link whatsapp" target="_blank" aria-label="WhatsApp">
-            <i class="fab fa-whatsapp"></i>
-        </a>
-        <a href="https://github.com/CalonPeretas" class="social-link github" target="_blank" aria-label="GitHub">
-            <i class="fab fa-github"></i>
-        </a>
+      <a href="https://www.instagram.com/bungreyes_?igsh=MWR3YWdmZWZtaXc0dw" class="social-link instagram" target="_blank" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+      <a href="https://wa.me/6282176772714" class="social-link whatsapp" target="_blank" aria-label="WhatsApp"><i class="fab fa-whatsapp"></i></a>
+      <a href="https://github.com/CalonPeretas" class="social-link github" target="_blank" aria-label="GitHub"><i class="fab fa-github"></i></a>
     </div>
     <p>&copy; 2025 Alan Rama Zufri. Seluruh hak cipta dilindungi.</p>
-</footer>
-
+  </footer>
+    
+    <script src="https://cdn.jsdelivr.net/npm/emailjs-com@3/dist/email.min.js"></script>
     <script>
+        emailjs.init("OiaoGHSf3BHK1cYvC");
         // Smooth scrolling
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function (e) {
@@ -811,6 +808,18 @@
             }
             type();
         }
+        // Kirim form kontak pakai EmailJS
+        document.querySelector('.contact-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            emailjs.sendForm('service_3yjwcug', 'template_kfepyda', this)
+                .then(() => {
+                    alert('Pesan berhasil dikirim!');
+                    this.reset();
+                }, (error) => {
+                    console.log('Gagal mengirim pesan:', error);
+                    alert('Gagal mengirim pesan. Silakan coba lagi.');
+                });
+        });
 
         // Initialize typing effect after page load
         window.addEventListener('load', () => {
