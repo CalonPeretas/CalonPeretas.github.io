@@ -509,6 +509,40 @@
             opacity: 1;
             transform: translateY(0);
         }
+
+        footer {
+    background: #333;
+    color: white;
+    text-align: center;
+    padding: 2rem 0;
+}
+
+.social-links {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    margin-bottom: 1rem;
+}
+
+.social-link {
+    width: 50px;
+    height: 50px;
+    background: #555;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    text-decoration: none;
+    font-size: 1.4rem;
+    transition: all 0.3s ease;
+}
+
+.social-link:hover {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    transform: translateY(-5px);
+}
+
     </style>
 </head>
 <body>
@@ -669,15 +703,16 @@
     <!-- Footer -->
     <!-- Tambahkan ini di <head> untuk Font Awesome (jika belum ada) -->
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-<footer>
+<!-- Footer -->
+<footer class="fade-in">
     <div class="social-links">
-        <a href="https://www.instagram.com/bungreyes_?igsh=MWR3YWdmZWZtaXc0dw" class="social-link" target="_blank" aria-label="Instagram">
+        <a href="https://www.instagram.com/bungreyes_?igsh=MWR3YWdmZWZtaXc0dw" class="social-link instagram" target="_blank" aria-label="Instagram">
             <i class="fab fa-instagram"></i>
         </a>
-        <a href="https://wa.me/6282176772714" class="social-link" target="_blank" aria-label="WhatsApp">
+        <a href="https://wa.me/6282176772714" class="social-link whatsapp" target="_blank" aria-label="WhatsApp">
             <i class="fab fa-whatsapp"></i>
         </a>
-        <a href="https://github.com/CalonPeretas" class="social-link" target="_blank" aria-label="GitHub">
+        <a href="https://github.com/CalonPeretas" class="social-link github" target="_blank" aria-label="GitHub">
             <i class="fab fa-github"></i>
         </a>
     </div>
